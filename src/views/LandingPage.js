@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Topic from '../components/Topic';
 
 import { getTopics } from '../store/topic/topicActions';
+
+import '../assets/css/LandingPage.css';
 
 function LandingPage() {
   const dispatch = useDispatch();
@@ -11,15 +14,22 @@ function LandingPage() {
     dispatch(getTopics());
   }, []);
 
-  useEffect(() => {
-    console.log(topics);
-  }, [topics]);
-
   return (
     <>
-      <h1>Hello World React! (Again)</h1>
+      <div className="main">
+        <h1>
+          <strong>CEFET</strong> Forum
+        </h1>
+      </div>
 
-      {topics.length > 0 && topics.map((topic) => <h2>{topic.title}</h2>)}
+      <br />
+      <br />
+
+      <div className="content-container">
+        <div className="topics-container">
+          {topics.length > 0 && topics.map((topic) => <Topic topic={topic} />)}
+        </div>
+      </div>
     </>
   );
 }
